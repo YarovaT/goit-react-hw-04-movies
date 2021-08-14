@@ -22,7 +22,7 @@ export function fetchSearchMovies() {
 
 export function fetchMovieDetails(movieId) {
   return fetchWithErrorHandling(
-    `${BASE_URL}/3/movie/{movieId}?api_key=${API_KEY}&language=en-US`,
+    `${BASE_URL}/3/movie/${movieId}?api_key=${API_KEY}&language=en-US`,
   );
 }
 

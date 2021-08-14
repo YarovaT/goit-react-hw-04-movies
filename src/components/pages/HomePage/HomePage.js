@@ -1,17 +1,32 @@
 import { useState, useEffect } from 'react';
 import * as MoviesAPI from '../../services/moviesAPI';
+import { Link, useRouteMatch } from 'react-router-dom';
+import Typography from '@material-ui/core/Typography';
 
 export default function HomePage() {
-  const [movies, setMovies] = useState(null);
+  const [movies, setMovies] = useState([]);
+  const { url } = useRouteMatch();
 
   useEffect(() => {
-    MoviesAPI.fetchHomePage().then(setMovies);
+    MoviesAPI.fetchHomePage()
+      .then(({ results }) => {
+        return results;
+      })
+      .then(setMovies);
   }, []);
+
   return (
     <>
-      <h1>Trending today</h1>
+      <Typography variant="h2">Trending today</Typography>
 
-      {movies && movies.map(movie => <li key="movie.id">{movie.title}</li>)}
+      <ul>
+        {movies &&
+          movies.map(movie => (
+            <li key={movie.id}>
+              <Link to={`${url}movies/${movie.id}`}>{movie.title}</Link>
+            </li>
+          ))}
+      </ul>
     </>
   );
 }
