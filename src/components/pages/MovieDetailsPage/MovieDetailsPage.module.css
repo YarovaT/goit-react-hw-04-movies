@@ -1,0 +1,21 @@
+img {
+  display: block;
+
+  min-height: auto;
+}
+
+.movieContainer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.movieInfo {
+  display: block;
+  margin-left: 15px;
+}
+
+.textInfo {
+  font-size: 16px;
+  font-weight: normal;
+}

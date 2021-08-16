@@ -1,4 +1,4 @@
-const BASE_URL = ' https://api.themoviedb.org';
+const BASE_URL = 'https://api.themoviedb.org';
 const API_KEY = '6c79c8740d327358775f1a54cc5339b1';
 
 async function fetchWithErrorHandling(url = '', config = {}) {
@@ -14,9 +14,9 @@ export function fetchHomePage() {
   );
 }
 
-export function fetchSearchMovies() {
+export function fetchSearchMovies(query) {
   return fetchWithErrorHandling(
-    `${BASE_URL}/3/search/movie?api_key=${API_KEY}&language=en-US&page=1&include_adult=false`,
+    `${BASE_URL}/3/search/movie?api_key=${API_KEY}&language=en-US&query=${query}&page=1&include_adult=false`,
   );
 }
 
@@ -28,12 +28,12 @@ export function fetchMovieDetails(movieId) {
 
 export function fetchMovieCredits(movieId) {
   return fetchWithErrorHandling(
-    `${BASE_URL}/3/movie/{movieId}/credits?api_key=${API_KEY}&language=en-US`,
+    `${BASE_URL}/3/movie/${movieId}/credits?api_key=${API_KEY}&language=en-US`,
   );
 }
 
 export function fetchMovieReviews(movieId) {
   return fetchWithErrorHandling(
-    `${BASE_URL}/3/movie/{movieId}/reviews?api_key=${API_KEY}&language=en-US&page=1`,
+    `${BASE_URL}/3/movie/${movieId}/reviews?api_key=${API_KEY}&language=en-US&page=1`,
   );
 }

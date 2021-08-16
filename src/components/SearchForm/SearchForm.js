@@ -1,4 +1,4 @@
-import React from 'react';
+import { React, useState } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Paper from '@material-ui/core/Paper';
 import InputBase from '@material-ui/core/InputBase';
@@ -27,15 +27,32 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
-export default function CustomizedInputBase() {
+export default function SearchForm({ onSubmit }) {
   const classes = useStyles();
 
+  const [query, setQuery] = useState('');
+
+  const seachMovies = movie => {
+    setQuery(movie.currentTarget.value);
+  };
+
+  const handleSubmit = e => {
+    e.preventDefault();
+
+    onSubmit(query);
+    setQuery('');
+  };
+
   return (
-    <Paper component="form" className={classes.root}>
+    <Paper component="form" className={classes.root} onSubmit={handleSubmit}>
       <InputBase
         className={classes.input}
-        placeholder="Search"
+        placeholder="Search movies"
         inputProps={{ 'aria-label': 'search' }}
+        autoComplete="off"
+        autoFocus
+        value={query}
+        onChange={seachMovies}
       />
       <IconButton
         type="submit"

@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
-import * as MoviesAPI from '../../services/moviesAPI';
 import { Link, useRouteMatch } from 'react-router-dom';
 import Typography from '@material-ui/core/Typography';
+import * as MoviesAPI from '../../services/moviesAPI';
 
 export default function HomePage() {
   const [movies, setMovies] = useState([]);
