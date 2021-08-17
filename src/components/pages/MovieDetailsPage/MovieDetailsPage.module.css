@@ -1,7 +1,5 @@
-img {
-  display: block;
-
-  min-height: auto;
+.cardImg {
+  border-radius: 8px;
 }
 
 .movieContainer {
@@ -18,4 +16,9 @@ img {
 .textInfo {
   font-size: 16px;
   font-weight: normal;
+}
+
+.movieText {
+  list-style: none;
+  margin: 5px 0;
 }

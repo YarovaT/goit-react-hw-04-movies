@@ -23,6 +23,7 @@ export default function MovieDetailsPage() {
       {movie && (
         <div className={style.movieContainer}>
           <img
+            className={style.cardImg}
             src={
               movie.backdrop_path
                 ? `https://image.tmdb.org/t/p/w500/${movie.backdrop_path}`
@@ -32,15 +33,15 @@ export default function MovieDetailsPage() {
           />
 
           <div className={style.movieInfo}>
-            <Typography variant="h3">
+            <Typography variant="h4">
               {movie.original_title}
               <span>({movie.release_date.substr(0, 4)})</span>
             </Typography>
 
-            <p>User Score: {movie.vote_count}%</p>
-            <Typography variant="h4">Overview</Typography>
+            <p className={style.movieText}>User Score: {movie.vote_count}%</p>
+            <Typography variant="h5">Overview</Typography>
 
-            <p>{movie.overview}</p>
+            <p className={style.movieText}>{movie.overview}</p>
 
             <Typography variant="h5">
               Genres:
@@ -62,9 +63,9 @@ export default function MovieDetailsPage() {
         <Cast />
       </Route>
 
-      {/* <Route path="/movies/:movieId">
-          <Reviews />
-        </Route> */}
+      {/* <Route path="/movies/:movie_id/reviews">
+        <Reviews />
+      </Route> */}
     </>
   );
 }
