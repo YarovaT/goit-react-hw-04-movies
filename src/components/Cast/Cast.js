@@ -23,12 +23,12 @@ export default function Cast() {
   }, [movieId]);
 
   return (
-    <Container>
+    <Container style={{ padding: '0' }}>
       <ul className={style.cardList}>
         {cast &&
           cast.map(credit => (
             <li key={credit.id} className={style.cardItem}>
-              <div>
+              <div className={style.imgBox}>
                 {' '}
                 <img
                   src={
@@ -40,7 +40,7 @@ export default function Cast() {
                 />
               </div>
 
-              <div>
+              <div className={style.cardInfo}>
                 <Typography variant="subtitle1" display="block">
                   {credit.name}
                 </Typography>
