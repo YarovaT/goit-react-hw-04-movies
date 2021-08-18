@@ -1,14 +1,9 @@
 .list {
   font-size: 24px;
-
   padding: 15px auto;
 }
 
 .link {
-  text-decoration: none;
   color: #000000;
-}
-
-.activeLink {
-  color: #1839a3;
+  text-decoration: none;
 }

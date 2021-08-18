@@ -1,11 +1,11 @@
-import './App.css';
+import { Switch, Route } from 'react-router-dom';
 import { Container } from '@material-ui/core';
 import AppBar from './components/AppBar';
-import { Switch, Route } from 'react-router-dom';
-import HomePage from './components/pages/HomePage';
-import MoviesPage from './components/pages/MoviesPage';
-import NotFoundPage from './components/pages/NotFoundPage/NotFoundPage';
-import MovieDetailsPage from './components/pages/MovieDetailsPage';
+import HomePage from './pages/HomePage';
+import MoviesPage from './pages/MoviesPage';
+import NotFoundPage from './pages/NotFoundPage/NotFoundPage';
+import MovieDetailsPage from './pages/MovieDetailsPage';
+import './App.css';
 
 function App() {
   return (

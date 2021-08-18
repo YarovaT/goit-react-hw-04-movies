@@ -29,7 +29,6 @@ const useStyles = makeStyles(theme => ({
 
 export default function SearchForm({ onSubmit }) {
   const classes = useStyles();
-
   const [query, setQuery] = useState('');
 
   const seachMovies = movie => {

@@ -1,15 +1,18 @@
 import { useParams } from 'react-router';
 import { useState, useEffect } from 'react';
-import { Route } from 'react-router-dom';
+import { NavLink, Route, useRouteMatch } from 'react-router-dom';
 import Typography from '@material-ui/core/Typography';
 import * as MoviesAPI from '../../services/moviesAPI';
 import style from './MovieDetailsPage.module.css';
-import Cast from '../../Cast';
-// import Reviews from '../../Reviews';
+import Cast from '../../components/Cast';
+import Reviews from '../Reviews';
 
 export default function MovieDetailsPage() {
   const { movieId } = useParams();
   const [movie, setMovie] = useState(null);
+  const { url, path } = useRouteMatch();
+
+  console.log(path);
 
   const defaultImg =
     'https://www.salonlfc.com/wp-content/uploads/2018/01/image-not-found-scaled.png';
@@ -59,13 +62,29 @@ export default function MovieDetailsPage() {
 
       <Typography variant="h5">Additional information</Typography>
 
-      <Route path="/movies/:movieId">
+      {movie && (
+        <ul>
+          <li>
+            <NavLink to={`${url}/cast`} className={style.movieLink}>
+              Cast
+            </NavLink>
+          </li>
+          <li>
+            <NavLink to={`${url}/reviews`} className={style.movieLink}>
+              Reviews
+            </NavLink>
+          </li>
+        </ul>
+      )}
+      <hr />
+
+      <Route path={`${path}/cast`}>
         <Cast />
       </Route>
 
-      {/* <Route path="/movies/:movie_id/reviews">
+      <Route path={`${path}/reviews`}>
         <Reviews />
-      </Route> */}
+      </Route>
     </>
   );
 }

@@ -1,57 +1,56 @@
 import { useState, useEffect } from 'react';
-import { Container } from '@material-ui/core';
 import { useParams } from 'react-router';
+import { Container } from '@material-ui/core';
 import Typography from '@material-ui/core/Typography';
-import * as MoviesAPI from '../services/moviesAPI';
+import * as MoviesAPI from '../../services/moviesAPI';
 import style from './Cast.module.css';
 
 export default function Cast() {
   const [cast, setCast] = useState(null);
-  console.log(cast);
-
   const { movieId } = useParams();
 
   const defaultImg =
     'https://www.salonlfc.com/wp-content/uploads/2018/01/image-not-found-scaled.png';
 
   useEffect(() => {
-    MoviesAPI.fetchMovieCredits(movieId)
-      .then(({ cast }) => {
-        return cast;
-      })
-      .then(setCast);
+    MoviesAPI.fetchMovieCredits(movieId).then(({ cast }) => {
+      setCast(cast);
+    });
   }, [movieId]);
 
   return (
     <Container style={{ padding: '0' }}>
-      <ul className={style.cardList}>
-        {cast &&
-          cast.map(credit => (
-            <li key={credit.id} className={style.cardItem}>
+      {cast && (
+        <ul className={style.cardList}>
+          {' '}
+          {cast.map(({ id, profile_path, name, character }) => (
+            <li key={id} className={style.cardItem}>
               <div className={style.imgBox}>
                 {' '}
                 <img
                   src={
-                    credit.profile_path
-                      ? `https://image.tmdb.org/t/p/w500/${credit.profile_path}`
+                    profile_path
+                      ? `https://image.tmdb.org/t/p/w500/${profile_path}`
                       : { defaultImg }
                   }
-                  alt={credit.name}
+                  alt={name}
                 />
               </div>
 
               <div className={style.cardInfo}>
                 <Typography variant="subtitle1" display="block">
-                  {credit.name}
+                  {name}
                 </Typography>
 
                 <Typography variant="subtitle1">
-                  Character: {credit.character}
+                  Character: {character}
                 </Typography>
               </div>
             </li>
           ))}
-      </ul>
+          ;
+        </ul>
+      )}
     </Container>
   );
 }
