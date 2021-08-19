@@ -1,6 +1,7 @@
 import { useHistory } from 'react-router-dom';
 import React from 'react';
 import Button from '@material-ui/core/Button';
+import DirectionsOutlined from '@material-ui/icons/Directions';
 
 export default function HomeButton() {
   let history = useHistory();
@@ -16,7 +17,8 @@ export default function HomeButton() {
       type="button"
       onClick={handleClick}
     >
-      GO HOMEPAGE
+      <DirectionsOutlined />
+      GO BACK
     </Button>
   );
 }

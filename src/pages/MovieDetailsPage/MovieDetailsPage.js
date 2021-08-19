@@ -1,12 +1,17 @@
 import { useParams } from 'react-router';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, lazy, Suspense } from 'react';
 import { NavLink, Route, useRouteMatch } from 'react-router-dom';
 import Typography from '@material-ui/core/Typography';
 import * as MoviesAPI from '../../services/moviesAPI';
 import style from './MovieDetailsPage.module.css';
-import Cast from '../../components/Cast';
-import Reviews from '../Reviews';
+// import Cast from '../../components/Cast';
+// import Reviews from '../Reviews';
 import HomeButton from '../../components/HomeButton/HomeButton';
+
+const Cast = lazy(() =>
+  import('../../components/Cast' /*webpackChunkName:"cast"*/),
+);
+const Reviews = lazy(() => import('../Reviews' /*webpackChunkName:"reviews"*/));
 
 export default function MovieDetailsPage() {
   const { movieId } = useParams();
@@ -78,13 +83,15 @@ export default function MovieDetailsPage() {
       )}
       <hr />
 
-      <Route path={`${path}/cast`}>
-        <Cast />
-      </Route>
+      <Suspense fallback={<h1>Loading page...</h1>}>
+        <Route path={`${path}/cast`}>
+          <Cast />
+        </Route>
 
-      <Route path={`${path}/reviews`}>
-        <Reviews />
-      </Route>
+        <Route path={`${path}/reviews`}>
+          <Reviews />
+        </Route>
+      </Suspense>
     </>
   );
 }

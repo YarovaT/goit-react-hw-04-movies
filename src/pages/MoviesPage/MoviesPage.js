@@ -3,6 +3,7 @@ import { Link, useRouteMatch } from 'react-router-dom';
 import * as MoviesAPI from '../../services/moviesAPI';
 import SearchForm from '../../components/SearchForm/SearchForm';
 import style from './MoviesPage.module.css';
+import HomeButton from '../../components/HomeButton/HomeButton';
 
 export default function MoviesPage() {
   const [searchQuery, setSearchQuery] = useState('');
@@ -36,6 +37,7 @@ export default function MoviesPage() {
           ))}
         </ul>
       )}
+      <HomeButton />
       <hr />
     </>
   );

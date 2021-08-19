@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { NavLink, useRouteMatch } from 'react-router-dom';
 import Typography from '@material-ui/core/Typography';
+import PropTypes from 'prop-types';
 import * as MoviesAPI from '../../services/moviesAPI';
 import style from './HomePage.module.css';
 
@@ -31,3 +32,7 @@ export default function HomePage() {
     </>
   );
 }
+
+HomePage.propTypes = {
+  movies: PropTypes.arrayOf(PropTypes.object),
+};
