@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { useParams } from 'react-router';
-import { Container } from '@material-ui/core';
+import Container from '../../components/Container';
 import Typography from '@material-ui/core/Typography';
 import * as MoviesAPI from '../../services/moviesAPI';
 import style from './Cast.module.css';
@@ -19,7 +19,7 @@ export default function Cast() {
   }, [movieId]);
 
   return (
-    <Container style={{ padding: '0' }}>
+    <Container>
       {cast && (
         <ul className={style.cardList}>
           {' '}

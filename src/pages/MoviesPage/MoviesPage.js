@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import { Link, useRouteMatch } from 'react-router-dom';
 import * as MoviesAPI from '../../services/moviesAPI';
 import SearchForm from '../../components/SearchForm/SearchForm';
+import style from './MoviesPage.module.css';
 
 export default function MoviesPage() {
   const [searchQuery, setSearchQuery] = useState('');
@@ -25,10 +26,12 @@ export default function MoviesPage() {
     <>
       <SearchForm onSubmit={onFormSubmit} />
       {moviesList && (
-        <ul>
+        <ul className={style.list}>
           {moviesList.map(({ id, title }) => (
             <li key={id}>
-              <Link to={`${url}/${id}`}>{title}</Link>
+              <Link to={`${url}/${id}`} className={style.link}>
+                {title}
+              </Link>
             </li>
           ))}
         </ul>

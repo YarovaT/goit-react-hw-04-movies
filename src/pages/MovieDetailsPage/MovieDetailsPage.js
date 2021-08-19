@@ -6,13 +6,12 @@ import * as MoviesAPI from '../../services/moviesAPI';
 import style from './MovieDetailsPage.module.css';
 import Cast from '../../components/Cast';
 import Reviews from '../Reviews';
+import HomeButton from '../../components/HomeButton/HomeButton';
 
 export default function MovieDetailsPage() {
   const { movieId } = useParams();
   const [movie, setMovie] = useState(null);
   const { url, path } = useRouteMatch();
-
-  console.log(path);
 
   const defaultImg =
     'https://www.salonlfc.com/wp-content/uploads/2018/01/image-not-found-scaled.png';
@@ -23,6 +22,7 @@ export default function MovieDetailsPage() {
 
   return (
     <>
+      <HomeButton />
       {movie && (
         <div className={style.movieContainer}>
           <img

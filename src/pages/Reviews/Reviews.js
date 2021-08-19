@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { useParams } from 'react-router';
-import { Container } from '@material-ui/core';
+import Container from '../../components/Container';
 import Typography from '@material-ui/core/Typography';
 import * as MoviesAPI from '../../services/moviesAPI';
 
@@ -15,7 +15,7 @@ export default function Reviews() {
   }, [movieId]);
 
   return (
-    <Container style={{ padding: '0' }}>
+    <Container>
       <ul>
         {reviews.length > 0 ? (
           reviews.map(({ id, author, content }) => (
