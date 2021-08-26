@@ -28,6 +28,7 @@ export default function MovieDetailsPage() {
   return (
     <>
       <HomeButton />
+
       {movie && (
         <div className={style.movieContainer}>
           <img

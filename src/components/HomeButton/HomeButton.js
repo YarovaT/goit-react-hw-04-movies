@@ -1,24 +1,16 @@
-import { useHistory } from 'react-router-dom';
 import React from 'react';
-import Button from '@material-ui/core/Button';
-import DirectionsOutlined from '@material-ui/icons/Directions';
+import { withRouter } from 'react-router';
 
-export default function HomeButton() {
-  let history = useHistory();
-
-  function handleClick() {
-    history.push('/');
+class Button extends React.Component {
+  render() {
+    return (
+      <button type="button" onClick={() => this.props.history.go(-1)}>
+        GO BACK
+      </button>
+    );
   }
-
-  return (
-    <Button
-      variant={'contained'}
-      color={'primary'}
-      type="button"
-      onClick={handleClick}
-    >
-      <DirectionsOutlined />
-      GO BACK
-    </Button>
-  );
 }
+
+const HomeButton = withRouter(Button);
+
+export default HomeButton;
