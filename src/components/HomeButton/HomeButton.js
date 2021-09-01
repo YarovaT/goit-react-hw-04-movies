@@ -1,16 +1,18 @@
 import React from 'react';
-import { withRouter } from 'react-router';
+import { useHistory, useLocation } from 'react-router-dom';
 
-class Button extends React.Component {
-  render() {
-    return (
-      <button type="button" onClick={() => this.props.history.go(-1)}>
-        GO BACK
-      </button>
-    );
-  }
-}
+const Button = () => {
+  const location = useLocation();
+  const history = useHistory();
+  const goBackBtn = () => {
+    history.push(location?.state?.from ?? '/');
+  };
 
-const HomeButton = withRouter(Button);
+  return (
+    <button type="button" onClick={goBackBtn}>
+      GO BACK
+    </button>
+  );
+};
 
-export default HomeButton;
+export default Button;

@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { NavLink, useRouteMatch } from 'react-router-dom';
+import { NavLink, useRouteMatch, useLocation } from 'react-router-dom';
 import Typography from '@material-ui/core/Typography';
 import PropTypes from 'prop-types';
 import * as MoviesAPI from '../../services/moviesAPI';
@@ -8,6 +8,7 @@ import style from './HomePage.module.css';
 export default function HomePage() {
   const [movies, setMovies] = useState([]);
   const { url } = useRouteMatch();
+  const location = useLocation();
 
   useEffect(() => {
     MoviesAPI.fetchHomePage().then(({ results }) => {
@@ -23,7 +24,15 @@ export default function HomePage() {
         {movies &&
           movies.map(({ id, title }) => (
             <li key={id}>
-              <NavLink to={`${url}movies/${id}`} className={style.link}>
+              <NavLink
+                to={{
+                  pathname: `${url}movies/${id}`,
+                  state: {
+                    from: location,
+                  },
+                }}
+                className={style.link}
+              >
                 {title}
               </NavLink>
             </li>
