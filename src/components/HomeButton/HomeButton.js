@@ -1,5 +1,6 @@
 import React from 'react';
 import { useHistory, useLocation } from 'react-router-dom';
+import style from './HomeButton.module.css';
 
 const Button = () => {
   const location = useLocation();
@@ -9,7 +10,7 @@ const Button = () => {
   };
 
   return (
-    <button type="button" onClick={goBackBtn}>
+    <button style={style.button} type="button" onClick={goBackBtn}>
       GO BACK
     </button>
   );
