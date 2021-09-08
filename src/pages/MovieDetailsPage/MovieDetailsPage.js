@@ -1,6 +1,7 @@
 import { useParams } from 'react-router';
 import { useState, useEffect, lazy, Suspense } from 'react';
 import { NavLink, Route, useRouteMatch } from 'react-router-dom';
+
 import Typography from '@material-ui/core/Typography';
 import * as MoviesAPI from '../../services/moviesAPI';
 import style from './MovieDetailsPage.module.css';
@@ -14,17 +15,18 @@ const Cast = lazy(() =>
 const Reviews = lazy(() => import('../Reviews' /*webpackChunkName:"reviews"*/));
 
 export default function MovieDetailsPage() {
-  const { movieId } = useParams();
   const [movie, setMovie] = useState(null);
+  const { movieId } = useParams();
   const { url, path } = useRouteMatch();
 
   const defaultImg =
     'https://www.salonlfc.com/wp-content/uploads/2018/01/image-not-found-scaled.png';
 
   useEffect(() => {
-    MoviesAPI.fetchMovieDetails(movieId).then(setMovie);
+    MoviesAPI.fetchMovieDetails(movieId)
+      .then(setMovie)
+      .catch(error => error);
   }, [movieId]);
-
   return (
     <>
       <HomeButton />
@@ -70,10 +72,8 @@ export default function MovieDetailsPage() {
 
       {movie && (
         <ul>
-          <li>
-            <NavLink to={`${url}/cast`} className={style.movieLink}>
-              Cast
-            </NavLink>
+          <li className={style.movieLink}>
+            <NavLink to={`${url}/cast`}>Cast</NavLink>
           </li>
           <li>
             <NavLink to={`${url}/reviews`} className={style.movieLink}>

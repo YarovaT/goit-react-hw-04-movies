@@ -4,13 +4,15 @@ import style from './HomeButton.module.css';
 
 const Button = () => {
   const location = useLocation();
+
   const history = useHistory();
-  const goBackBtn = () => {
+
+  const goToBackBtn = () => {
     history.push(location?.state?.from ?? '/');
   };
 
   return (
-    <button style={style.button} type="button" onClick={goBackBtn}>
+    <button style={style.button} type="button" onClick={goToBackBtn}>
       GO BACK
     </button>
   );
